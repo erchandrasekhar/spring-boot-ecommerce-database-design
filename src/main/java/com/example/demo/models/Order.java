@@ -1,4 +1,4 @@
-package com.example.demo.itemManagemantDatabaseDesign;
+package com.example.demo.models;
 
 import java.util.Date;
 
