@@ -40,6 +40,15 @@ public class LoginController {
 		mv.setViewName("login");
 		return mv;
 	}
+	
+	@RequestMapping(value="/home",method=RequestMethod.GET)
+	public ModelAndView home(HttpServletRequest request)
+	{
+	    
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("home");
+		return mv;
+	}
     
 	@RequestMapping(value={"/login"},method=RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest request,ModelMap model)
@@ -52,14 +61,18 @@ public class LoginController {
 		
 		
 		
-		if(userName.equals(user.getUserName()) && password.equals(user.getPassword()))
+		if(userName.equals("") || password.equals(""))
 		{
-			mv.setViewName("home");
-		}
-		else{
 			mv.setViewName("login");
 			model.put("msg", "Invalid credentials");
 		}
+		if(user.getUserName().equals(userName) && user.getPassword().equals(password))
+		{
+			mv.setViewName("home");
+			
+		}
+		
+			
 		
 		
 		return mv;

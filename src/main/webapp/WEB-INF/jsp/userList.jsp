@@ -190,21 +190,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage">Logo</a>
+      <a class="navbar-brand" href="home">Devganga Logestic</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#myPage">HOME</a></li>
-        <li><a href="#band">BAND</a></li>
-        <li><a href="#tour">TOUR</a></li>
-        <li><a href="#contact">CONTACT</a></li>
+        <li><a href="home">Home</a></li>
+        <li><a href="loadDlBill">Generate Bill</a></li>
+        <li><a href="viewAllBills">View All Bills</a></li>
+        <li><a href="contact">Contact</a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">More
           <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="getAllUser">View All User</a></li>
-            <li><a href="#">Extras</a></li>
-            <li><a href="#">Media</a></li> 
+           <ul class="dropdown-menu">
+            <li><a href="profile">Profile</a></li>
+            <li><a href="changePassword">Change Password</a></li>
+            <li><a href="logOut">Log Out</a></li> 
           </ul>
         </li>
         <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
@@ -212,6 +212,7 @@
     </div>
   </div>
 </nav>
+
 <br>
 <br>
 <br>
@@ -269,7 +270,7 @@
   <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a><br><br>
-  <p>Bootstrap Theme Made By <a href="https://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p> 
+  <p>Design & Developed By <a href="https://www.facebook.com/chandrasekhar.yadav.904" data-toggle="tooltip" title="Visit my facebook">Chandrasekhar</a></p> 
 </footer>
 
 <script

@@ -153,7 +153,7 @@
   }
   </style>
 </head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" style="color: black;">
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -173,7 +173,7 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">More
           <span class="caret"></span></a>
-            <ul class="dropdown-menu">
+           <ul class="dropdown-menu">
             <li><a href="profile">Profile</a></li>
             <li><a href="changePassword">Change Password</a></li>
             <li><a href="logOut">Log Out</a></li> 
@@ -186,21 +186,47 @@
 </nav>
 
 
-<br><br>
-<div class="jumbotron" style="text-align: center;padding: 10px;">
- <br><br>
- <br><br>
-  <h1>Welcome To Devganga Logestic</h1>
-  <!-- <p>Bootstrap is the most popular HTML, CSS...</p> -->
-  <br><br>
-<br><br>
-   <br><br>
-<br><br>
- <br><br>
+
+
+
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+  <h3 class="text-center">Contact</h3>
+  <p class="text-center"><em>We love our fans!</em></p>
+
+  <div class="row">
+    <div class="col-md-4">
+      <p>Fan? Drop a note.</p>
+      <p><span class="glyphicon glyphicon-map-marker"></span>Samastipur, Bihar (India)</p>
+      <p><span class="glyphicon glyphicon-phone"></span>Mobile: +91 7891331023</p>
+      <p><span class="glyphicon glyphicon-envelope"></span>Email: er.chandrasekharyadav@gmail.com</p>
+    </div>
+    <form action="saveContact" method="post">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        </div>
+      </div>
+      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+      <br>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <button class="btn pull-right" type="submit">Send</button>
+        </div>
+      </div>
+    </div>
+    </form>
+  </div>
+  <br>
+
 </div>
 
-
-
+<!-- Image of location/map -->
+<img src="map.jpg" class="img-responsive" style="width:100%">
 
 <!-- Footer -->
 <footer class="text-center">

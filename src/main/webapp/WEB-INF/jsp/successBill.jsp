@@ -1,15 +1,37 @@
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Home</title>
-  <meta charset="utf-8">
+  <title>Devganga Logestic</title>
+ 
+ <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  <style type="text/css"> 
+  
+  #loriNumber,#generatedBy,#logesticName,#fromDate,#toDate,#driverName,#loadingLocation,#unLoadingLocation,#materialCategory,#dieselPrice,
+  #policePrice,#passingprice,#grisingPrice,#commissionPrice,#labourPrice,#dalaliPrice,#foodprice,#totalPrice{
+  
+  font-size: 12px;
+  height: 25px;
+  padding: 5px;
+  }
+  
+  
+ 
+  .panel-info>.panel-heading {
+    color: #dedada;
+    background-color: #586eff;
+    border-color: #bce8f1;
+}
+  
+  </style>
   <style>
   body {
     font: 400 15px/1.8 Lato, sans-serif;
@@ -152,8 +174,10 @@
     resize: none;
   }
   </style>
+  
 </head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<body>
+
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -173,7 +197,7 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">More
           <span class="caret"></span></a>
-            <ul class="dropdown-menu">
+          <ul class="dropdown-menu">
             <li><a href="profile">Profile</a></li>
             <li><a href="changePassword">Change Password</a></li>
             <li><a href="logOut">Log Out</a></li> 
@@ -184,24 +208,28 @@
     </div>
   </div>
 </nav>
+<br>
+<br>
+<div class="container-fluid">
 
 
-<br><br>
-<div class="jumbotron" style="text-align: center;padding: 10px;">
+<c:if test="${saveSuccess == true }">
+ 
+   <div class="jumbotron" style="text-align: center;padding: 10px;">
  <br><br>
  <br><br>
-  <h1>Welcome To Devganga Logestic</h1>
-  <!-- <p>Bootstrap is the most popular HTML, CSS...</p> -->
-  <br><br>
+  <h1>Bill Generated Successful</h1>
+ 
+<a href="viewAllBills" class= "btn btn-primary" style="border-radius:0px;"><i class="fa fa-undo" style="color:white"></i>View Generated Bills </a>
+<a href="home" class= "btn btn-primary" style="border-radius:0px;"><i class="fa fa-home" style="color:white"></i> Go to Home</a>
+
 <br><br>
-   <br><br>
-<br><br>
+ <br><br>
  <br><br>
 </div>
+</c:if>
 
-
-
-
+</div>
 <!-- Footer -->
 <footer class="text-center">
   <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
@@ -210,37 +238,24 @@
   <p>Design & Developed By <a href="https://www.facebook.com/chandrasekhar.yadav.904" data-toggle="tooltip" title="Visit my facebook">Chandrasekhar</a></p> 
 </footer>
 
+<script type="text/javascript">
 
-
-<script>
-$(document).ready(function(){
-  // Initialize Tooltip
-  $('[data-toggle="tooltip"]').tooltip(); 
-  
-  // Add smooth scrolling to all links in navbar + footer link
-  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
-
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 900, function(){
-   
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
+$( "#fromDate" ).datepicker({
+    changeMonth: true,
+    changeYear: true,
+    dateFormat: 'dd-mm-yy'
   });
-})
+  
+  $( "#toDate" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      dateFormat: 'dd-mm-yy'
+      
+    });
+  
+  
+ 
+  
 </script>
 
 </body>

@@ -3,7 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
    
-   
+   <% String path = request.getContextPath();
+   System.out.println(path);
+   %>
 
 <head>
 
@@ -18,6 +20,7 @@
 <style type="text/css">
 body {
     padding-top: 90px;
+    background-image: url('<%=path%>/jsp/i/truck.jpg') ; 
 }
 .panel-login {
 	border-color: #ccc;
@@ -124,7 +127,7 @@ body {
 </head>
 
 <% String error = request.getParameter("error"); %>
-<body style="background-color: #3a7cd8;">
+<body style="background-image: url('C:/Users/chandrasekhar/Desktop/truck.jpg');">
   <div class="container">
     	<div class="row">
 			<div class="col-md-6 col-md-offset-3">
@@ -149,10 +152,10 @@ body {
 							<div class="col-lg-12">
 								<form id="login-form" action="login" method="post">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required>
+										<input type="text" name="username" id="username" tabindex="1" maxlength="25" class="form-control" placeholder="Username" value="" required>
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
+										<input type="password" name="password" id="password"  maxlength="25" tabindex="2" class="form-control" placeholder="Password" required>
 									</div>
 								 <div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">

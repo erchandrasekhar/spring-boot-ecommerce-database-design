@@ -1,5 +1,7 @@
 package com.example.demo.devgangaLogeistic;
 
-public interface DlBillRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface DlBillRepository extends CrudRepository<DlBill, Integer>{
 
 }
