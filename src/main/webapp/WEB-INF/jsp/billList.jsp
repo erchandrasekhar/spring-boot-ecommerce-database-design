@@ -498,7 +498,7 @@
         	    <a href ="viewAllBills" type="submit" class="btn btn-success" id="btnSave" style="border-radius:0px;">Back To All Bills 
         		<span class="fa fa-check-circle"></span>
         		</a>
-        		 <a href ="prinrPdf" type="submit" class="btn btn-info" id="btnSave" style="border-radius:0px;">Print pdf 
+        		 <a href ="prinrPdf?&id=${dlBill.dlBillId}" type="submit" class="btn btn-info" id="btnSave" style="border-radius:0px;">Print pdf 
         		<span class="fa fa-check-circle"></span>
         		</a>
         

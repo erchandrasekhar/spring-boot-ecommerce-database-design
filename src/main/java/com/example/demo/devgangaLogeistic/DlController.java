@@ -1,5 +1,6 @@
 package com.example.demo.devgangaLogeistic;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +34,22 @@ public class DlController {
 		    dlBill.setLoriNumber(request.getParameter("loriNumber"));
 		    dlBill.setBillGenratedBy(request.getParameter("generatedBy"));
 		    dlBill.setBillDate(new Date());
+		    
+		    String fromDate = request.getParameter("fromDate");
+		    String toDate = request.getParameter("toDate");
+		    Date date1 = null;
+		    Date date2 = null;
+		    try {
+				date1 = new SimpleDateFormat("dd-MM-yyyy").parse(fromDate);
+				date2 = new SimpleDateFormat("dd-MM-yyyy").parse(toDate);
+				dlBill.setFromDate(date1);
+				dlBill.setToDate(date2);
+			} catch (Exception e)
+		    {
+				e.printStackTrace();
+			}
+		    
+		    
 		    dlBill.setLogesticName(request.getParameter("logesticName"));
 		    dlBill.setDriver(request.getParameter("driverName"));
 		    dlBill.setLoadingLocation(request.getParameter("loadingLocation"));
