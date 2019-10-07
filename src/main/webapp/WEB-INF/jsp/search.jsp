@@ -232,6 +232,10 @@
 								<th>Bill Date</th>
 								<th>Loading Location</th>
 								<th>Unloading Location</th>
+								
+								<th>From Date</th>
+								<th>To Date</th>
+								
 								<th>Total Ammount</th>
 								<th>View Bill</th>
 								<th>Update</th>
@@ -248,6 +252,9 @@
 									<td>${ul.billDate}</td>
 									<td>${ul.loadingLocation}</td>
 								    <td>${ul.unLoadingLocation}</td>
+								    
+								    <td>${ul.fromDate}</td>
+								    <td>${ul.toDate}</td>
 								    <td>${ul.grandTotal}</td>
 								    
 								     <td>    
