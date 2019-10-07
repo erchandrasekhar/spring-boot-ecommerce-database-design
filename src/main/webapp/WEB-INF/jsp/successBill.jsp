@@ -194,16 +194,20 @@
         <li><a href="loadDlBill">Generate Bill</a></li>
         <li><a href="viewAllBills">View All Bills</a></li>
         <li><a href="contact">Contact</a></li>
-        <li class="dropdown">
+      <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">More
           <span class="caret"></span></a>
-          <ul class="dropdown-menu">
+            <ul class="dropdown-menu">
+            <c:if test="${loginUser.userRole == 'ADMIN'}">
+            <li><a href="register">Create New User</a></li>
+             <li><a href="getAllUser">View All User</a></li>
+            </c:if>
             <li><a href="profile">Profile</a></li>
             <li><a href="changePassword">Change Password</a></li>
-            <li><a href="logOut">Log Out</a></li> 
+            <li><a href="logout">Log Out</a></li> 
           </ul>
         </li>
-        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+       <li><a href="search"><span class="glyphicon glyphicon-search"></span></a></li>
       </ul>
     </div>
   </div>

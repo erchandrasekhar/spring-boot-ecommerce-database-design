@@ -1,7 +1,11 @@
 package com.example.demo.devgangaLogeistic;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
 
-public interface DlBillRepository extends CrudRepository<DlBill, Integer>{
+import org.springframework.data.jpa.repository.JpaRepository;
 
+
+public interface DlBillRepository extends JpaRepository<DlBill, Integer>{
+
+	public List<DlBill> findByLoriNumber(String loriNumber);
 }

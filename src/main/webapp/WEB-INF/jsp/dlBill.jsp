@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Devganga Logestic</title>
+  <title>Generate New Bill</title>
  
  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,8 +15,10 @@
   
   <style type="text/css"> 
   
-  #loriNumber,#generatedBy,#logesticName,#fromDate,#toDate,#driverName,#loadingLocation,#unLoadingLocation,#materialCategory,#dieselPrice,
-  #policePrice,#passingprice,#grisingPrice,#commissionPrice,#labourPrice,#dalaliPrice,#foodprice,#totalPrice{
+  #loriNumber,#generatedBy,#logesticName,#fromDate,#toDate,#driverName,
+  #loadingLocation,#unLoadingLocation,#materialCategory,#dieselPrice,
+  #policePrice,#passingprice,#grisingPrice,
+  #commissionPrice,#labourPrice,#dalaliPrice,#foodprice,#totalPrice,#tollPrice,#meterialPrice{
   
   font-size: 12px;
   height: 25px;
@@ -94,11 +96,7 @@
     color: #555;
   }
   .btn {
-    padding: 10px 20px;
-   /*  background-color: #333; */
-    /* color: #f1f1f1; */
-    border-radius: 0;
-    transition: .2s;
+   
   }
   .btn:hover, .btn:focus {
     border: 1px solid #333;
@@ -194,16 +192,20 @@
         <li><a href="loadDlBill">Generate Bill</a></li>
         <li><a href="viewAllBills">View All Bills</a></li>
         <li><a href="contact">Contact</a></li>
-        <li class="dropdown">
+       <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">More
           <span class="caret"></span></a>
-          <ul class="dropdown-menu">
+            <ul class="dropdown-menu">
+            <c:if test="${loginUser.userRole == 'ADMIN'}">
+            <li><a href="register">Create New User</a></li>
+             <li><a href="getAllUser">View All User</a></li>
+            </c:if>
             <li><a href="profile">Profile</a></li>
             <li><a href="changePassword">Change Password</a></li>
-            <li><a href="logOut">Log Out</a></li> 
+            <li><a href="logout">Log Out</a></li> 
           </ul>
         </li>
-        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+        <li><a href="search"><span class="glyphicon glyphicon-search"></span></a></li>
       </ul>
     </div>
   </div>
@@ -344,7 +346,7 @@
         
             <option value="gitti">Gitti</option>
             <option value="balu">Balu</option>
-            
+            <option value="cement">Cement</option>
         </select>
        
   </div>
@@ -473,7 +475,7 @@
  
  <div class="col-md-4">
     <div class="form-group">
-    <label class="control-label" for="totalPrice">Toll  Price&nbsp;<font size="3" color="red">*</font></label>
+    <label class="control-label" for="tollPrice">Toll  Price&nbsp;<font size="3" color="red">*</font></label>
      <input type="text" name="tollPrice" id="tollPrice"  maxlength="8" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" placeholder="Enter totalPrice" >    
      
        
@@ -482,7 +484,7 @@
   <div class="col-md-4">
     <div class="form-group">
     <label class="control-label" for="totalPrice">Total Price&nbsp;<font size="3" color="red">*</font></label>
-     <input type="text" name="totalPrice" id="totalPrice"  maxlength="8" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" placeholder="Enter totalPrice" >    
+     <input type="text" name="totalPrice" id="totalPrice"  maxlength="8" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" placeholder="Enter totalPrice" readonly >    
      
        
   </div>
@@ -503,7 +505,7 @@
     <div class="col-md-4">
          <div class="row" style="text-align: center;">
                   
-        	    <button type="submit" class="btn btn-success" id="btnSave" style="border-radius:0px;">Generate Bill
+        	    <button type="submit" class="btn btn-success" onclick="calulateTotal();" id="btnSave" style="border-radius:0px;">Generate Bill
         		<span class="fa fa-check-circle"></span>
         		</button>
         		<button type="reset" class="btn btn-danger" style="border-radius:0px;">Reset
@@ -555,7 +557,23 @@ $( "#fromDate" ).datepicker({
       
     });
   
-  
+  function calulateTotal()
+  {
+	   var meterialPrice = parseFloat(document.getElementById("meterialPrice").value);
+	   var dieselPrice = parseFloat(document.getElementById("dieselPrice").value);
+	   var passingprice = parseFloat(document.getElementById("passingprice").value);
+	   var grisingPrice = parseFloat(document.getElementById("grisingPrice").value);
+	   var commissionPrice = parseFloat(document.getElementById("commissionPrice").value);
+	   var labourPrice = parseFloat(document.getElementById("labourPrice").value);  
+	   var policePrice = parseFloat(document.getElementById("policePrice").value);
+	   var dalaliPrice = parseFloat(document.getElementById("dalaliPrice").value);
+	   var foodprice = parseFloat(document.getElementById("foodprice").value);
+	   var tollPrice = parseFloat(document.getElementById("tollPrice").value);
+	   var total =meterialPrice+dieselPrice+passingprice+grisingPrice+commissionPrice+labourPrice+policePrice+dalaliPrice+foodprice+tollPrice;
+	   document.getElementById("totalPrice").value=total.toFixed(2); 
+	   
+	   
+  }
  
   
 </script>

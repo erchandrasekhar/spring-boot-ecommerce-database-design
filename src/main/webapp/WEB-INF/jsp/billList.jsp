@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
   <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Home</title>
+  <title>Bill List</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -220,16 +220,20 @@
         <li><a href="loadDlBill">Generate Bill</a></li>
         <li><a href="viewAllBills">View All Bills</a></li>
         <li><a href="contact">Contact</a></li>
-        <li class="dropdown">
+       <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">More
           <span class="caret"></span></a>
-          <ul class="dropdown-menu">
+            <ul class="dropdown-menu">
+            <c:if test="${loginUser.userRole == 'ADMIN'}">
+            <li><a href="register">Create New User</a></li>
+             <li><a href="getAllUser">View All User</a></li>
+            </c:if>
             <li><a href="profile">Profile</a></li>
             <li><a href="changePassword">Change Password</a></li>
-            <li><a href="logOut">Log Out</a></li> 
+            <li><a href="logout">Log Out</a></li> 
           </ul>
         </li>
-        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+        <li><a href="search"><span class="glyphicon glyphicon-search"></span></a></li>
       </ul>
     </div>
   </div>
@@ -239,6 +243,16 @@
 <br>
 
 <div class="container-fluid">
+
+
+<c:if test="${updateSuccess == true }">
+    
+    <div class="alert alert-info alert-dismissible" style="background-color: green;color: white;">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color: red;">&times;</a>
+    <strong >Success!</strong> &nbsp;Bill Update Successful
+    </div>
+    </c:if>
+
 	<!-- View Bill Details form start -->
 	<c:if test="${billView == true && billUpdate == null}">
  <h5><strong>Devganga Logestic Genrated Bill Number&nbsp;(${dlBill.dlBillId}) and Generation Date &nbsp;${dlBill.billDate}</strong> </h5>
@@ -498,9 +512,9 @@
         	    <a href ="viewAllBills" type="submit" class="btn btn-success" id="btnSave" style="border-radius:0px;">Back To All Bills 
         		<span class="fa fa-check-circle"></span>
         		</a>
-        		 <a href ="prinrPdf?&id=${dlBill.dlBillId}" type="submit" class="btn btn-info" id="btnSave" style="border-radius:0px;">Print pdf 
+        		<%--  <a href ="prinrPdf?&id=${dlBill.dlBillId}" type="submit" class="btn btn-info" id="btnSave" style="border-radius:0px;">Print pdf 
         		<span class="fa fa-check-circle"></span>
-        		</a>
+        		</a> --%>
         
         
               </div>
@@ -530,7 +544,11 @@
   <!-- ############################## bill update start from here  #########################################-->
   <c:if test="${billView == null && billUpdate == true}">
  <h5><strong>Devganga Logestic Genrated Bill Number&nbsp;(${dlBill.dlBillId}) and Generation Date &nbsp;${dlBill.billDate}</strong> </h5>
+ 
+    
   <div class="panel-group">
+    
+    
     
       <form action="updateBill" method="post">
       <div class="panel panel-info">
@@ -626,8 +644,16 @@
     <div class="form-group">
     <label class="control-label" for="materialCategory">Material Category &nbsp;<font size="3" color="red">*</font></label>
          
-        <input type="text" name="materialCategory" id="materialCategory" value="${dlBill.materialCategory }"  class="form-control" placeholder="Enter UnLoading Location" required="">          
-       
+      <%--   <input type="text" name="materialCategory" id="materialCategory" value="${dlBill.materialCategory }"  class="form-control" placeholder="Enter UnLoading Location" required="">          
+     --%>   <select class="form-control" id="materialCategory" name="materialCategory" required>
+        
+    
+             <option value="${dlBill.materialCategory }" selected>${dlBill.materialCategory } (Selected Meterial)</option>  
+            <option value="gitti">Gitti</option>
+            <option value="balu">Balu</option>
+             <option value="cement">Cement</option>
+            
+        </select>
   </div>
   </div>
      
@@ -784,14 +810,11 @@
     <div class="col-md-4">
          <div class="row" style="text-align: center;">
                   
-        	    <button type="submit" class="btn btn-success" id="btnSave" style="border-radius:0px;">Update Bill 
+        	    <button type="submit" class="btn btn-success" id="btnSave" onclick="calulateTotal();" style="border-radius:0px;">Update Bill 
         		<span class="fa fa-check-circle"></span>
         		</button>
         		
-        		 <button type="reset" class="btn btn-danger" id="btnSave" style="border-radius:0px;">Reset
-        		<span class="fa fa-check-circle"></span>
-        		</button>
-                
+        		
                  <a href="viewAllBills" class="btn btn-info" id="btnSave" style="border-radius:0px;">Back To All Bills
         		<span class="fa fa-check-circle"></span>
         		</a>
@@ -963,16 +986,34 @@ $('#ticketList').DataTable( {
 $( "#fromDate" ).datepicker({
     changeMonth: true,
     changeYear: true,
-    dateFormat: 'dd-mm-yy'
+    dateFormat: 'yy-mm-dd'
   });
   
   $( "#toDate" ).datepicker({
       changeMonth: true,
       changeYear: true,
-      dateFormat: 'dd-mm-yy'
+      dateFormat: 'yy-mm-dd'
       
     });
   
+  
+  function calulateTotal()
+  {
+	   var meterialPrice = parseFloat(document.getElementById("meterialPrice").value);
+	   var dieselPrice = parseFloat(document.getElementById("dieselPrice").value);
+	   var passingprice = parseFloat(document.getElementById("passingprice").value);
+	   var grisingPrice = parseFloat(document.getElementById("grisingPrice").value);
+	   var commissionPrice = parseFloat(document.getElementById("commissionPrice").value);
+	   var labourPrice = parseFloat(document.getElementById("labourPrice").value);  
+	   var policePrice = parseFloat(document.getElementById("policePrice").value);
+	   var dalaliPrice = parseFloat(document.getElementById("dalaliPrice").value);
+	   var foodprice = parseFloat(document.getElementById("foodprice").value);
+	   var tollPrice = parseFloat(document.getElementById("tollPrice").value);
+	   var total =meterialPrice+dieselPrice+passingprice+grisingPrice+commissionPrice+labourPrice+policePrice+dalaliPrice+foodprice+tollPrice;
+	   document.getElementById("totalPrice").value=total.toFixed(2); 
+	   
+	   
+  }
   
 
 </script>

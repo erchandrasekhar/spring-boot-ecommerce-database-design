@@ -1,8 +1,9 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Home</title>
+  <title>Contact</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -173,13 +174,17 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">More
           <span class="caret"></span></a>
-           <ul class="dropdown-menu">
+            <ul class="dropdown-menu">
+            <c:if test="${loginUser.userRole == 'ADMIN'}">
+            <li><a href="register">Create New User</a></li>
+             <li><a href="getAllUser">View All User</a></li>
+            </c:if>
             <li><a href="profile">Profile</a></li>
             <li><a href="changePassword">Change Password</a></li>
-            <li><a href="logOut">Log Out</a></li> 
+            <li><a href="logout">Log Out</a></li> 
           </ul>
         </li>
-        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+       <li><a href="search"><span class="glyphicon glyphicon-search"></span></a></li>
       </ul>
     </div>
   </div>
@@ -192,6 +197,14 @@
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
   <h3 class="text-center">Contact</h3>
+  <c:if test="${contactSaveSuccess == true }">
+    
+    <div class="alert alert-info alert-dismissible" style="background-color: green;color: white;">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color: red;">&times;</a>
+    <strong >Success!</strong> &nbsp;Your Query Sent To Devganga Logestic and He Will Contact You Soon
+    </div>
+  </c:if>
+
   <p class="text-center"><em>We love our fans!</em></p>
 
   <div class="row">

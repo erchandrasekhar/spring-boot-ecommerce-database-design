@@ -1,10 +1,9 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
   <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Home</title>
+  <title>Devganga Logestic</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -12,31 +11,6 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
- 
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
-
-<style type="text/css">
-.modal-backdrop {
-	/* bug fix - no overlay */
-	display: none;
-}
-</style>
-<style>
-
-.dtr-title {
-	font-size: 12px;
-}
-
-.dtr-data {
-	font-size: 12px;
-}
-</style>
-  
   <style>
   body {
     font: 400 15px/1.8 Lato, sans-serif;
@@ -181,7 +155,6 @@
   </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" style="color: black;">
-
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -202,7 +175,6 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">More
           <span class="caret"></span></a>
             <ul class="dropdown-menu">
-             <li><a href="">${loginUser.firstName}</a></li>
             <c:if test="${loginUser.userRole == 'ADMIN'}">
             <li><a href="register">Create New User</a></li>
              <li><a href="getAllUser">View All User</a></li>
@@ -218,60 +190,65 @@
   </div>
 </nav>
 
-<br>
-<br>
-<br>
 
-<div class="container-fluid">
-	
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<h1 class="panel-title">All User</h1>
-			</div>
-			<div class="panel-body">
-				<div class="table">
-					<table class="table table-striped table-bordered dt-responsive"
-						style="width: 100%" id="ticketList">
-						<thead style="font-size: 12px;">
-							<tr bgcolor="#337ab7" style="color: white;">
-								<th>id:</th>
-								<th>User Name</th>
-								<th>Password</th>
-								<th>Name</th>
-								<th>Mobile:</th>
-								<th>Role</th>
-								 
-								
-							</tr>
-						</thead>
-
-						<tbody>
-						  
-							<c:forEach items="${userList}" var="ul">
+<br><br>
+<div class="row">
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+                               <c:if test="${newUser != null }">
+                                <div class="alert alert-success alert-dismissible fade in">
+							    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							    <strong>Success!</strong> User Created successfully and his UserName and Password  is below<br>
+							   <strong> UserName=${newUser.userName} </strong><br>
+							    <strong>Password=${newUser.password}</strong>
+							  </div>
+                               
+                               </c:if>
+                            
+								<a href="register" class="active" id="login-form-link" style="text-align:center;font-size: 20px;">Register New User</a>
 							
-								<tr style="font-size: 12px; font-weight: bolder;">
-									<td>${ul.userId }</td>
-									<td>${ul.userName}</td>
-									<td>${ul.password}</td>
-									<td>${ul.firstName}</td>
-								    <td>${ul.mobile}</td>
-								     <td>${ul.userRole}</td>
-								</tr>
+						
 								
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		
-	</div>
+								<form id="register-form" action="register" method="post" style="padding: 10px;">
+									<div class="form-group">
+									<label> First Name</label>
+										<input type="text" name="firstName" id="firstName" tabindex="1" class="form-control" placeholder="Enter First Name" required>
+									</div>
+									<div class="form-group">
+										<label> Last Name</label>
+										<input type="text" name="lastName" id="lastName" tabindex="1" class="form-control" placeholder="Email Last Name" value="">
+									</div>
+									<div class="form-group">
+										<label> User Name</label>
+										<input type="text" name="userName" id="userName" tabindex="2" class="form-control" placeholder="user Name">
+									</div>
+									<div class="form-group">
+										<label> Mobile Name</label>
+										<input type="text" name="mobile" id="mobile" tabindex="2" class="form-control" placeholder="Enter mobile">
+									</div>
+									<div class="form-group">
+										<label> Password </label>
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Enter password">
+									</div>
+									<div class="form-group">
+										<label> Email </label>
+										<input type="email" name="email" id="email" tabindex="2" class="form-control" placeholder="Enter email">
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+</div>
+<div class="col-sm-4"></div>
 
-  
-<br>
-<br>
-<br>
-
+<br><br>
+<br><br>
+<br><br>
 <!-- Footer -->
 <footer class="text-center">
   <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
@@ -280,36 +257,8 @@
   <p>Design & Developed By <a href="https://www.facebook.com/chandrasekhar.yadav.904" data-toggle="tooltip" title="Visit my facebook">Chandrasekhar</a></p> 
 </footer>
 
-<script
-		src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-	
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-		
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-		
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-		
-	<script
-		src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-		
-	<script
-		src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
-
-	<script type="text/javascript">
 
 
-	
 <script>
 $(document).ready(function(){
   // Initialize Tooltip
@@ -339,16 +288,6 @@ $(document).ready(function(){
     } // End if
   });
 })
-</script>
-
-<script type="text/javascript">
-$('#ticketList').DataTable( {
-    dom: 'Bfrtip',
-    aaSorting:[[0,'desc']],
-    buttons: [
-        { extend:'copy', attr: { id: 'allan' } }, 'csv', 'excel', 'pdf', 'print'
-    ]
-} );
 </script>
 
 </body>

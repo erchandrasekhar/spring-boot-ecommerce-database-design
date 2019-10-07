@@ -3,9 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
    
-   <% String path = request.getContextPath();
-   System.out.println(path);
-   %>
+   
 
 <head>
 
@@ -20,7 +18,6 @@
 <style type="text/css">
 body {
     padding-top: 90px;
-    background-image: url('<%=path%>/jsp/i/truck.jpg') ; 
 }
 .panel-login {
 	border-color: #ccc;
@@ -127,40 +124,42 @@ body {
 </head>
 
 <% String error = request.getParameter("error"); %>
-<body style="background-image: url('C:/Users/chandrasekhar/Desktop/truck.jpg');">
+<body style="background-color: #3a7cd8;">
   <div class="container">
     	<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				<div class="panel panel-login">
 					<div class="panel-heading">
 						<div class="row">
-							<div class="col-xs-6">
-								<a href="#" class="active" id="login-form-link" style="text-align: center;font-size: 20px;">Login</a>
+							<div class="col-xs-12">
+								<a href="#" class="active" id="login-form-link" style="text-align: center;font-size: 20px;">Login Devganga Logestic!</a>
 							</div>
-							 <div class="col-xs-6">
-							 <a href="" id="">Register</a> 
-							</div>
+							<!-- <div class="col-xs-6">
+							 <a href="#" id="register-form-link">Register</a> 
+							</div> -->
 						</div>
 						<hr>
 					</div>
 					<div class="panel-body">
 						<div class="row">
 						
-						
-						<div style="text-align: center;color: red;"></div>
-						
+						<%if(null!=error  && error.equals("true")){ %>
+						<div style="text-align: center;color: red;">Invalid  Credential !!! </div>
+						<%} %>
 							<div class="col-lg-12">
 								<form id="login-form" action="login" method="post">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" maxlength="25" class="form-control" placeholder="Username" value="" required>
+									   <label>Enter User Name</label>
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="password"  maxlength="25" tabindex="2" class="form-control" placeholder="Password" required>
+									<label>Enter Password </label>
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
 									</div>
-								 <div class="form-group text-center">
+									<!-- <div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
 										<label for="remember"> Remember Me</label>
-									</div>
+									</div> -->
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
@@ -172,24 +171,24 @@ body {
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
-													 <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
+													<!-- <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a> -->
 												</div>
 											</div>
 										</div>
 									</div>
 								</form>
-								<form id="register-form" action="register" method="post" style="display: none;">
+								<form id="register-form" action="#" method="post" style="display: none;">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 									</div>
 									<div class="form-group">
-										<input type="text" name="fName" id="fName" tabindex="1" class="form-control" placeholder="Email fName" value="" required>
+										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
 									</div>
 									<div class="form-group">
-										<input type="password" name="mobile" id="mobile" tabindex="2" class="form-control" placeholder="Enter mobile" required>
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
 									</div>
 									<div class="form-group">
 										<div class="row">

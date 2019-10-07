@@ -2,6 +2,7 @@ package com.example.demo.devgangaLogeistic;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,7 +18,9 @@ public class DlController {
 	
 	@Autowired
 	DlBillRepository dlBillRepository;
-
+	@Autowired
+	Contactrepository contactrepository;
+	
 	@RequestMapping(value="loadDlBill",method=RequestMethod.GET)
 	public ModelAndView loadDlBill()
 	{   ModelAndView mv =new ModelAndView();
@@ -181,6 +184,21 @@ public class DlController {
 		    dlBill.setLoriNumber(request.getParameter("loriNumber"));
 		    dlBill.setBillGenratedBy(request.getParameter("generatedBy"));
 		    dlBill.setBillDate(new Date());
+		    
+		    String fromDate = request.getParameter("fromDate");
+		    String toDate = request.getParameter("toDate");
+		    Date date1 = null;
+		    Date date2 = null;
+		    try {
+				date1 = new SimpleDateFormat("yyyy-MM-dd").parse(fromDate);
+				date2 = new SimpleDateFormat("yyyy-MM-dd").parse(toDate);
+				dlBill.setFromDate(date1);
+				dlBill.setToDate(date2);
+			} catch (Exception e)
+		    {
+				e.printStackTrace();
+			}
+		    
 		    dlBill.setLogesticName(request.getParameter("logesticName"));
 		    dlBill.setDriver(request.getParameter("driverName"));
 		    dlBill.setLoadingLocation(request.getParameter("loadingLocation"));
@@ -228,6 +246,62 @@ public class DlController {
 		    
 		    mv.setViewName("billList");
 			return mv;
+	}
+	
+	
+	@RequestMapping(value="saveContact",method=RequestMethod.POST)
+	public ModelAndView saveContact(HttpServletRequest request,ModelMap modelMap)
+	{      
+		    System.out.println(request.getParameter("name"));
+		    ModelAndView mv =new ModelAndView();
+		    Contact contact = new Contact();
+		     contact.setContactName(request.getParameter("name"));
+		     contact.setContactEmail(request.getParameter("email"));
+		     contact.setContactComment(request.getParameter("comments"));
+		     contact.setContactDate(new Date());
+		     
+		     try {
+		    	 contactrepository.save(contact);
+		    	 mv.setViewName("contact");
+		    	 modelMap.put("contactSaveSuccess",true);
+			} catch (Exception e) 
+		     {
+				e.printStackTrace();
+			}
+		     
+		    
+			return mv;
+	}
+	
+	
+	
+	@RequestMapping(value="search",method=RequestMethod.GET)
+	public ModelAndView loadSearch(ModelMap modelMap,HttpServletRequest request)
+	{   ModelAndView mv =new ModelAndView();
+	    mv.setViewName("search");
+		return mv;
+		
+	}
+	
+	@RequestMapping(value="search",method=RequestMethod.POST)
+	public ModelAndView search(ModelMap modelMap,HttpServletRequest request)
+	{   ModelAndView mv =new ModelAndView();
+		List<DlBill> billList = dlBillRepository.findByLoriNumber(request.getParameter("loriNumber"));
+		if (!billList.isEmpty()) 
+		{    System.out.println(billList);
+			 modelMap.put("billList",billList);
+			 mv.setViewName("search");
+		}
+		else{
+			
+			 modelMap.put("searchError", true);
+			 mv.setViewName("search");
+		}
+		
+		
+	   
+		return mv;
+		
 	}
 	
 	

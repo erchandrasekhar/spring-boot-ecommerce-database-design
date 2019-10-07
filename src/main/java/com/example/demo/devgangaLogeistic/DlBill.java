@@ -34,9 +34,11 @@ public class DlBill {
 	@Column(name="bill_generated_date",nullable=true)
 	private Date billDate;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="fromDate",nullable=true)
 	private Date fromDate;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="toDate",nullable=true)
 	private Date toDate;
 	@Column(name="loadingLocation",nullable=true)
