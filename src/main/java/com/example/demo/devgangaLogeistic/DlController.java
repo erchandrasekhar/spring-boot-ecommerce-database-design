@@ -1,5 +1,6 @@
 package com.example.demo.devgangaLogeistic;
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -8,10 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.example.demo.User;
+import com.example.demo.UserRepository;
 
 @Controller
 public class DlController {
@@ -20,11 +25,14 @@ public class DlController {
 	DlBillRepository dlBillRepository;
 	@Autowired
 	Contactrepository contactrepository;
-	
+	@Autowired
+	UserRepository userRepository;
 	@RequestMapping(value="loadDlBill",method=RequestMethod.GET)
-	public ModelAndView loadDlBill()
+	public ModelAndView loadDlBill(Principal principal,Model modelMap)
 	{   ModelAndView mv =new ModelAndView();
 	    mv.setViewName("dlBill");
+	    User loginUser = userRepository.findByUserNameAndActive(principal.getName(), true);
+        modelMap.addAttribute("loginUser", loginUser);
 		return mv;
 		
 	}
@@ -35,7 +43,9 @@ public class DlController {
 		    ModelAndView mv =new ModelAndView();
 		    DlBill dlBill = new DlBill();
 		    dlBill.setLoriNumber(request.getParameter("loriNumber"));
-		    dlBill.setBillGenratedBy(request.getParameter("generatedBy"));
+		    /*dlBill.setBillGenratedBy(request.getParameter("generatedBy"));*/
+		    User user = userRepository.findOne(Integer.parseInt(request.getParameter("userId")));
+		    dlBill.setUser(user);
 		    dlBill.setBillDate(new Date());
 		    
 		    String fromDate = request.getParameter("fromDate");
@@ -182,7 +192,7 @@ public class DlController {
 		    ModelAndView mv =new ModelAndView();
 		    DlBill dlBill = dlBillRepository.findOne(Integer.parseInt(request.getParameter("id")));
 		    dlBill.setLoriNumber(request.getParameter("loriNumber"));
-		    dlBill.setBillGenratedBy(request.getParameter("generatedBy"));
+		   /* dlBill.setBillGenratedBy(request.getParameter("generatedBy"));*/
 		    dlBill.setBillDate(new Date());
 		    
 		    String fromDate = request.getParameter("fromDate");
